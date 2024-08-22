@@ -304,8 +304,8 @@ class Clustering:
                         media_promosi_counts = df_cluster[media_columns].apply(lambda x: (x == 'Ya').sum())
 
                         # Pie chart for top 3 Program Studi
-                        top3_prodi = prodi_counts.head(3)
-                        bottom3_prodi = prodi_counts.tail(3)
+                        top3_prodi = prodi_counts
+                        bottom3_prodi = prodi_counts
 
                         # Plot pie chart for top 3 program studi
                         fig, ax = plt.subplots()
