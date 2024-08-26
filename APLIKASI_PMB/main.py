@@ -334,7 +334,7 @@ class Clustering:
                         # Kalimat representasi untuk bottom 3 Program Studi
                         st.subheader('Representasi Program Studi dengan Peminat terendah')
                         st.write(f"- Promosi yang dilakukan untuk mengenalkan {', '.join(prodi_counts.tail(3).index)} kepada calon mahasiswa baru dari {', '.join(jenis_sekolah_counts.head(3).index)} di {', '.join(provinsi_counts.head(3).index)}. Promosi ini akan memanfaatkan media sosial populer seperti {', '.join(media_promosi_counts.nlargest(3).index)} universitas.")
-                        else:
+                else:
                         st.warning("Tidak ada data yang tersedia untuk clustering. Silakan lakukan preprocessing terlebih dahulu.")
 
 
