@@ -316,7 +316,7 @@ class Clustering:
                             values='PROGRAM STUDI',
                             title=f'Program Studi Dengan Peminat Tertinggi - Kelompok {cluster}'
                         )
-                            st.plotly_chart(fig)
+                        st.plotly_chart(fig)
 
                             # Kalimat representasi untuk top 3 Program Studi
                             st.subheader('Representasi Program Studi dengan Peminat tertinggi ')
@@ -329,7 +329,7 @@ class Clustering:
                             values='PROGRAM STUDI',
                             title=f'Program Studi Dengan Peminat Terendah - Kelompok {cluster}'
                         )
-                            st.plotly_chart(fig)
+                        st.plotly_chart(fig)
 
                         # Kalimat representasi untuk bottom 3 Program Studi
                         st.subheader('Representasi Program Studi dengan Peminat terendah')
