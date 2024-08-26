@@ -319,8 +319,8 @@ class Clustering:
                         st.plotly_chart(fig)
 
                             # Kalimat representasi untuk top 3 Program Studi
-                            st.subheader('Representasi Program Studi dengan Peminat tertinggi ')
-                            st.write(f"- Promosi ini bertujuan untuk menarik minat siswa {', '.join(jenis_sekolah_counts.head(3).index)} yang berada di {', '.join(provinsi_counts.head(3).index)} agar memilih {', '.join(prodi_counts.head(3).index)}. Strategi promosi akan difokuskan pada platform digital seperti {', '.join(media_promosi_counts.nlargest(3).index)}.")
+                        st.subheader('Representasi Program Studi dengan Peminat tertinggi ')
+                        st.write(f"- Promosi ini bertujuan untuk menarik minat siswa {', '.join(jenis_sekolah_counts.head(3).index)} yang berada di {', '.join(provinsi_counts.head(3).index)} agar memilih {', '.join(prodi_counts.head(3).index)}. Strategi promosi akan difokuskan pada platform digital seperti {', '.join(media_promosi_counts.nlargest(3).index)}.")
 
                             # Treemap for bottom 3 Program Studi
                         fig = px.treemap(
