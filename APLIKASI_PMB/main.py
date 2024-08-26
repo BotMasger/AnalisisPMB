@@ -190,7 +190,7 @@ class Clustering:
             df_selected = st.session_state.df_selected
             clustering_data = df_selected.select_dtypes(include=[np.number])
 
-            num_clusters = st.number_input('Enter Number of Clusters for Data Mining', min_value=2, max_value=10, value=2, step=1)
+            num_clusters = st.number_input('Masukkan Jumlah Konten Yang Akan Dibuat', min_value=2, max_value=10, value=2, step=1)
 
             if st.button('Mulai Clustering'):
                 kmeans = KMeans(n_clusters=num_clusters, init='random', random_state=42)
@@ -285,16 +285,16 @@ class Clustering:
                 df_selected['PROVINSI'] = df_selected['PROVINSI'].map(provinsi_mapping)
                 df_selected['JENIS SEKOLAH'] = df_selected['JENIS SEKOLAH'].map(jenis_sekolah_mapping)
 
-                st.title('Repesentasi Kelompok')
+                st.title('Konten Yang Terbentuk')
 
                 # Display the number of clusters
-                st.subheader(f'Jumlah Kelompok Yang Dipilih: {df_selected["Cluster"].nunique()}')
+                st.subheader(f'Jumlah Konten Yang Dipilih: {df_selected["Cluster"].nunique()}')
 
                 # Loop through each cluster
                 for cluster in sorted(df_selected['Cluster'].unique()):
                     st.write(f"Kelompok: {cluster}, Memiliki Anggota Sebanyak: {len(df_selected[df_selected['Cluster'] == cluster])}")
 
-                    with st.expander(f'Karakteristik Anggota - Kelompok {cluster}:'):
+                    with st.expander(f'Karakteristik Anggota - Konten Promosi {cluster}:'):
                 
                         # Plot pie charts for the current cluster
                         df_cluster = df_selected[df_selected['Cluster'] == cluster]
