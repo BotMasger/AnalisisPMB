@@ -7,6 +7,7 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import davies_bouldin_score
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
+import plotly.express as px
 
 st.set_page_config(page_title="Universitas Komputer Indonesia")
 
@@ -308,26 +309,33 @@ class Clustering:
                         bottom3_prodi = prodi_counts
 
                         # Plot pie chart for top 3 program studi
-                        fig, ax = plt.subplots()
-                        ax.pie(top3_prodi, labels=top3_prodi.index, autopct='%1.1f%%', startangle=90)
-                        ax.set_title(f'Program Studi Dengan Peminat Tertinggi - Kelompok {cluster}')
-                        st.pyplot(fig)
+                        # Treemap for top 3 Program Studi
+                        fig = px.treemap(
+                            prodi_counts.reset_index(),
+                            path=['index'],
+                            values='PROGRAM STUDI',
+                            title=f'Program Studi Dengan Peminat Tertinggi - Kelompok {cluster}'
+                            )
+                            st.plotly_chart(fig)
 
-                        # Kalimat representasi untuk top 3 Program Studi
-                        st.subheader('Representasi Program Studi dengan Peminat tertinggi ')
-                        st.write(f"- Promosi ini bertujuan untuk menarik minat siswa {', '.join(jenis_sekolah_counts.head(3).index)} yang berada di {', '.join(provinsi_counts.head(3).index)} agar memilih {', '.join(top3_prodi.index)}. Strategi promosi akan difokuskan pada platform digital seperti {', '.join(media_promosi_counts.nlargest(3).index)}.")
+                            # Kalimat representasi untuk top 3 Program Studi
+                            st.subheader('Representasi Program Studi dengan Peminat tertinggi ')
+                            st.write(f"- Promosi ini bertujuan untuk menarik minat siswa {', '.join(jenis_sekolah_counts.head(3).index)} yang berada di {', '.join(provinsi_counts.head(3).index)} agar memilih {', '.join(prodi_counts.head(3).index)}. Strategi promosi akan difokuskan pada platform digital seperti {', '.join(media_promosi_counts.nlargest(3).index)}.")
 
-                        # Plot pie chart for bottom 3 program studi
-                        fig, ax = plt.subplots()
-                        ax.pie(bottom3_prodi, labels=bottom3_prodi.index, autopct='%1.1f%%', startangle=90)
-                        ax.set_title(f'Program Studi Dengan Peminat Terendah - Kelompok {cluster}')
-                        st.pyplot(fig)
+                            # Treemap for bottom 3 Program Studi
+                        fig = px.treemap(
+                            prodi_counts.reset_index(),
+                            path=['index'],
+                            values='PROGRAM STUDI',
+                            title=f'Program Studi Dengan Peminat Terendah - Kelompok {cluster}'
+                        )
+                            st.plotly_chart(fig)
 
                         # Kalimat representasi untuk bottom 3 Program Studi
                         st.subheader('Representasi Program Studi dengan Peminat terendah')
-                        st.write(f"- Promosi yang dilakukan untuk mengenalkan {', '.join(bottom3_prodi.index)} kepada calon mahasiswa baru dari {', '.join(jenis_sekolah_counts.head(3).index)} di {', '.join(provinsi_counts.head(3).index)}. Promosi ini akan memanfaatkan media sosial populer seperti {', '.join(media_promosi_counts.nlargest(3).index)} universitas.")
-            else:
-                st.warning("Tidak ada data yang tersedia untuk clustering. Silakan lakukan preprocessing terlebih dahulu.")
+                        st.write(f"- Promosi yang dilakukan untuk mengenalkan {', '.join(prodi_counts.tail(3).index)} kepada calon mahasiswa baru dari {', '.join(jenis_sekolah_counts.head(3).index)} di {', '.join(provinsi_counts.head(3).index)}. Promosi ini akan memanfaatkan media sosial populer seperti {', '.join(media_promosi_counts.nlargest(3).index)} universitas.")
+                    else:
+                        st.warning("Tidak ada data yang tersedia untuk clustering. Silakan lakukan preprocessing terlebih dahulu.")
 
 
 if __name__ == "__main__":
