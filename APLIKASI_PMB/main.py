@@ -7,6 +7,7 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import davies_bouldin_score
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
+import plotly.express as px
 
 st.set_page_config(page_title="Universitas Komputer Indonesia")
 
