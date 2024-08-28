@@ -192,7 +192,7 @@ class Clustering:
 
             num_clusters = st.number_input('Masukkan Jumlah Konten Yang Akan Dibuat', min_value=2, max_value=10, value=2, step=1)
 
-            if st.button('Mulai Clustering'):
+            if st.button('Mulai'):
                 kmeans = KMeans(n_clusters=num_clusters, init='random', random_state=42)
                 kmeans.fit(clustering_data)
 
@@ -210,74 +210,26 @@ class Clustering:
                 else:
                     st.error("Hasil clustering buruk.")
 
-                # Proses Pie Chart
-                prodi_mapping = {
-                    1: 'TEKNIK INFORMATIKA-S1',
-                    2: 'SISTEM KOMPUTER-S1',
-                    3: 'TEKNIK INDUSTRI-S1',
-                    4: 'TEKNIK ARSITEKTUR-S1',
-                    5: 'SISTEM INFORMASI-S1',
-                    6: 'PERENCANAAN WILAYAH DAN KOTA-S1',
-                    8: 'TEKNIK KOMPUTER-D3',
-                    9: 'MANAJEMEN INFORMATIKA-D3',
-                    10: 'KOMPUTERISASI AKUNTANSI-D3',
-                    30: 'TEKNIK SIPIL-S1',
-                    31: 'TEKNIK ELEKTRO-S1',
-                    11: 'AKUNTANSI-S1',
-                    12: 'MANAJEMEN-S1',
-                    13: 'AKUNTANSI-D3',
-                    14: 'MANAJEMEN PEMASARAN-D3',
-                    15: 'KEUANGAN DAN PERBANKAN-D3',
-                    16: 'ILMU HUKUM-S1',
-                    17: 'ILMU PEMERINTAHAN-S1',
-                    18: 'ILMU KOMUNIKASI-S1',
-                    43: 'HUBUNGAN INTERNASIONAL-S1',
-                    19: 'DESAIN KOMUNIKASI VISUAL-S1',
-                    20: 'DESAIN INTERIOR-S1',
-                    21: 'DESAIN GRAFIS-D3',
-                    37: 'SASTRA INGGRIS-S1',
-                    38: 'SASTRA JEPANG-S1'}
+                # Mapping dictionary
+                prodi_mapping = {1: 'TEKNIK INFORMATIKA-S1', 2: 'SISTEM KOMPUTER-S1', 3: 'TEKNIK INDUSTRI-S1', 
+                                 4: 'TEKNIK ARSITEKTUR-S1', 5: 'SISTEM INFORMASI-S1', 6: 'PERENCANAAN WILAYAH DAN KOTA-S1',
+                                 8: 'TEKNIK KOMPUTER-D3', 9: 'MANAJEMEN INFORMATIKA-D3', 10: 'KOMPUTERISASI AKUNTANSI-D3',
+                                 30: 'TEKNIK SIPIL-S1', 31: 'TEKNIK ELEKTRO-S1', 11: 'AKUNTANSI-S1', 12: 'MANAJEMEN-S1', 
+                                 13: 'AKUNTANSI-D3', 14: 'MANAJEMEN PEMASARAN-D3', 15: 'KEUANGAN DAN PERBANKAN-D3', 
+                                 16: 'ILMU HUKUM-S1', 17: 'ILMU PEMERINTAHAN-S1', 18: 'ILMU KOMUNIKASI-S1', 43: 'HUBUNGAN INTERNASIONAL-S1',
+                                 19: 'DESAIN KOMUNIKASI VISUAL-S1', 20: 'DESAIN INTERIOR-S1', 21: 'DESAIN GRAFIS-D3', 
+                                 37: 'SASTRA INGGRIS-S1', 38: 'SASTRA JEPANG-S1'}
 
-                provinsi_mapping = {
-                    1: 'Jawa Barat', 
-                    2: 'Banten', 
-                    3: 'DKI Jakarta',
-                    4: 'Jawa Tengah',
-                    5: 'Sumatera Selatan',
-                    6: 'Bangka Belitung',
-                    7: 'Sumatera Utara',
-                    8: 'Sumatera Barat',
-                    9: 'Riau',
-                    10: 'Jawa Timur',
-                    11: 'Papua Barat',
-                    12: 'Bengkulu',
-                    13: 'Jambi',
-                    14: 'Kalimantan Timur',
-                    15: 'Sulawesi Selatan',
-                    16: 'Sulawesi Utara',
-                    17: 'Kalimantan Barat',
-                    18: 'Nanggroe Aceh Darussalam (NAD)',
-                    19: 'Lampung',
-                    20: 'Gorontalo',
-                    21: 'Sulawesi Tengah',
-                    22: 'Kalimantan Tengah',
-                    23: 'Nusa Tenggara Timur',
-                    24: 'Kepulauan Riau',
-                    25: 'Nusa Tenggara Barat',
-                    26: 'Sulawesi Tenggara',
-                    27: 'Kalimantan Selatan',
-                    28: 'Maluku Utara',
-                    29: 'Maluku'}
-                
-                jenis_sekolah_mapping = {
-                    1: 'SMA', 
-                    2: 'SMK', 
-                    3: 'MA',
-                    4: 'PESANTREN',
-                    5: 'UNIVERSITAS',
-                    6: 'PKBM',
-                    7: 'HOMESCHOOLING'}
-                
+                provinsi_mapping = {1: 'Jawa Barat', 2: 'Banten', 3: 'DKI Jakarta', 4: 'Jawa Tengah', 5: 'Sumatera Selatan',
+                                    6: 'Bangka Belitung', 7: 'Sumatera Utara', 8: 'Sumatera Barat', 9: 'Riau', 
+                                    10: 'Jawa Timur', 11: 'Papua Barat', 12: 'Bengkulu', 13: 'Jambi', 14: 'Kalimantan Timur',
+                                    15: 'Sulawesi Selatan', 16: 'Sulawesi Utara', 17: 'Kalimantan Barat', 18: 'Nanggroe Aceh Darussalam (NAD)',
+                                    19: 'Lampung', 20: 'Gorontalo', 21: 'Sulawesi Tengah', 22: 'Kalimantan Tengah', 
+                                    23: 'Nusa Tenggara Timur', 24: 'Kepulauan Riau', 25: 'Nusa Tenggara Barat', 26: 'Sulawesi Tenggara',
+                                    27: 'Kalimantan Selatan', 28: 'Maluku Utara', 29: 'Maluku'}
+
+                jenis_sekolah_mapping = {1: 'SMA', 2: 'SMK', 3: 'MA', 4: 'PESANTREN', 5: 'UNIVERSITAS', 6: 'PKBM', 7: 'HOMESCHOOLING'}
+
                 media_columns = ['WEBSITE', 'INSTAGRAM', 'TWITTER', 'BROSUR', 'YOUTUBE', 'TIKTOK']
                 df_selected[media_columns] = df_selected[media_columns].replace({1: 'Ya', 0: '-'})
 
@@ -288,47 +240,54 @@ class Clustering:
                 st.title('Konten Yang Terbentuk')
 
                 # Display the number of clusters
-                st.subheader(f'Jumlah Konten Yang Dipilih: {df_selected["Cluster"].nunique()}')
+                st.subheader(f'Jumlah Konten Yang Dibuat: {df_selected["Cluster"].nunique()}')
 
                 # Loop through each cluster
                 for cluster in sorted(df_selected['Cluster'].unique()):
                     st.write(f"Kelompok: {cluster}, Memiliki Anggota Sebanyak: {len(df_selected[df_selected['Cluster'] == cluster])}")
 
-                    with st.expander(f'Karakteristik Anggota - Konten Promosi {cluster}:'):
-                
-                        # Plot pie charts for the current cluster
+                    with st.expander(f'Karakteristik Anggota - Kelompok {cluster}:'):
+                        # Data for the current cluster
                         df_cluster = df_selected[df_selected['Cluster'] == cluster]
-                        prodi_counts = df_cluster['PROGRAM STUDI'].value_counts()
-                        jenis_sekolah_counts = df_cluster['JENIS SEKOLAH'].value_counts()
-                        provinsi_counts = df_cluster['PROVINSI'].value_counts()
-                        media_promosi_counts = df_cluster[media_columns].apply(lambda x: (x == 'Ya').sum())
+                        prodi_counts = df_cluster['PROGRAM STUDI'].value_counts().reset_index()
+                        prodi_counts.columns = ['PROGRAM STUDI', 'count']  # Rename columns for consistency
+                        prodi_counts.dropna(inplace=True)  # Drop any NaN values
 
-                        # Pie chart for top 3 Program Studi
-                        # Pie chart for top 3 Program Studi
-                        top3_prodi = prodi_counts
-                        bottom3_prodi = prodi_counts
+                        jenis_sekolah_counts = df_cluster['JENIS SEKOLAH'].value_counts().reset_index()
+                        jenis_sekolah_counts.columns = ['JENIS SEKOLAH', 'count']  # Rename columns for consistency
 
-                        # Plot pie chart for top 3 program studi
-                        fig, ax = plt.subplots()
-                        ax.pie(top3_prodi, labels=top3_prodi.index, autopct='%1.1f%%', startangle=90)
-                        ax.set_title(f'Program Studi Dengan Peminat Tertinggi - Kelompok {cluster}')
-                        st.pyplot(fig)
+                        provinsi_counts = df_cluster['PROVINSI'].value_counts().reset_index()
+                        provinsi_counts.columns = ['PROVINSI', 'count']  # Rename columns for consistency
 
-                        # Kalimat representasi untuk top 3 Program Studi
-                        st.subheader('Representasi Program Studi dengan Peminat tertinggi ')
-                        st.write(f"- Promosi ini bertujuan untuk menarik minat siswa {', '.join(jenis_sekolah_counts.head(3).index)} yang berada di {', '.join(provinsi_counts.head(3).index)} agar memilih {', '.join(top3_prodi.index)}. Strategi promosi akan difokuskan pada platform digital seperti {', '.join(media_promosi_counts.nlargest(3).index)}.")
+                        media_promosi_counts = df_cluster[media_columns].apply(lambda x: (x == 'Ya').sum()).reset_index()
+                        media_promosi_counts.columns = ['Media', 'count']  # Rename columns for consistency
+                        media_promosi_counts['count'] = pd.to_numeric(media_promosi_counts['count'], errors='coerce')  # Convert to numeric
 
-                        # Plot pie chart for bottom 3 program studi
-                        fig, ax = plt.subplots()
-                        ax.pie(bottom3_prodi, labels=bottom3_prodi.index, autopct='%1.1f%%', startangle=90)
-                        ax.set_title(f'Program Studi Dengan Peminat Terendah - Kelompok {cluster}')
-                        st.pyplot(fig)
+                        # Filter program studi with count < 100
+                        low_count_prodi_counts = prodi_counts[prodi_counts['count'] < 100]
 
-                        # Kalimat representasi untuk bottom 3 Program Studi
-                        st.subheader('Representasi Program Studi dengan Peminat terendah')
-                        st.write(f"- Promosi yang dilakukan untuk mengenalkan {', '.join(bottom3_prodi.index)} kepada calon mahasiswa baru dari {', '.join(jenis_sekolah_counts.head(3).index)} di {', '.join(provinsi_counts.head(3).index)}. Promosi ini akan memanfaatkan media sosial populer seperti {', '.join(media_promosi_counts.nlargest(3).index)} universitas.")
-            else:
-                st.warning("Tidak ada data yang tersedia untuk clustering. Silakan lakukan preprocessing terlebih dahulu.")
+                        if not low_count_prodi_counts.empty:
+                            # Treemap for program studi with count < 100
+                            fig = px.treemap(
+                                low_count_prodi_counts,
+                                path=['PROGRAM STUDI'],
+                                values='count',
+                                title=f'Program Studi Yang Akan Dipromosikan - Kelompok {cluster}'
+                            )
+                            st.plotly_chart(fig)
+                        else:
+                            st.write("Tidak ada program studi dengan jumlah peminat kurang dari 100.")
+
+                        st.subheader('Program Studi Yang Akan Dipromosikan ')
+                        st.write(
+                            f"Promosi ini dilakukan untuk meningkatkan jumlah mahasiswa baru pada program studi {', '.join(prodi_counts['PROGRAM STUDI'])}. "
+                            f"Promosi ini dilakukan pada {', '.join(jenis_sekolah_counts['JENIS SEKOLAH'].head(3))}, "
+                            f"yang berada di {', '.join(provinsi_counts['PROVINSI'].head(3))}, "
+                            f"dengan menggunakan media promosi seperti {', '.join(media_promosi_counts.nlargest(3, 'count')['Media'])}."
+                        )
+
+        else:
+            st.warning("Tidak ada data yang tersedia untuk clustering. Silakan lakukan preprocessing terlebih dahulu.")
 
 if __name__ == "__main__":
     app = MainClass()
